@@ -702,3 +702,5 @@ if (EMSCRIPTEN)
 	# Also disable warning: running limited binaryen optimizations because DWARF info requested (or indirectly required)
 	target_link_options(Jolt PUBLIC -Wno-limited-postlink-optimizations)
 endif()
+
+target_compile_definitions(Jolt PUBLIC _LIBCPP_REMOVE_TRANSITIVE_INCLUDES)

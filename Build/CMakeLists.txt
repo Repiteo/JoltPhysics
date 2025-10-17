@@ -255,6 +255,9 @@ else()
 		if (CROSS_COMPILE_ARM AND NOT ("${CROSS_COMPILE_ARM_TARGET}" STREQUAL ""))
 			set(CMAKE_CXX_FLAGS "--target=${CROSS_COMPILE_ARM_TARGET} ${CMAKE_CXX_FLAGS}")
 		endif()
+
+		# libc++ removes majority of transitive includes starting with C++23, but defines a macro to enable on earlier versions.
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -D_LIBCPP_REMOVE_TRANSITIVE_INCLUDES")
 	endif()
 
 	# See https://github.com/jrouwe/JoltPhysics/issues/922. When compiling with DOUBLE_PRECISION=YES and CMAKE_OSX_DEPLOYMENT_TARGET=10.12 clang triggers a warning that we silence here.
